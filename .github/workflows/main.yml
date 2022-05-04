@@ -4,12 +4,13 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: snyk/actions/setup@master
-    - uses: actions/setup-go@v1
+    - uses: actions/setup-go@v3
       with:
         go-version: "1.18"
+    - uses: actions/checkout@v3
+    - uses: snyk/actions/golang@master
+
     - name: Snyk monitor 
-      run: snyk test
+      run: snyk monitor
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
