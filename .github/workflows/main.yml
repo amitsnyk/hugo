@@ -8,9 +8,8 @@ jobs:
       with:
         go-version: "1.18"
     - uses: actions/checkout@v3
+    - uses: snyk/actions/golang@master
     - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/golang@master
+      run: snyk test
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --severity-threshold=high
